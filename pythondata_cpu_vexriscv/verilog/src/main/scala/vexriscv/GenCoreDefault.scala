@@ -297,6 +297,11 @@ object GenCoreDefault{
             plugin.dBus.setAsDirectionLess()
             master(plugin.dBus.toWishbone()).setName("dBusWishbone")
           }
+          case plugin: CfuPlugin => {
+            plugin.bus.setAsDirectionLess()
+            val cfuCore = CfuBb(plugin.busParameter)
+            plugin.bus <> cfuCore.io.bus
+          }
           case _ =>
         }
       }
