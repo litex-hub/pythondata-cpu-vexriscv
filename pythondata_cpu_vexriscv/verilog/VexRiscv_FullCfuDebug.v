@@ -1,6 +1,6 @@
 // Generator : SpinalHDL v1.4.3    git head : adf552d8f500e7419fff395b7049228e4bc5de26
 // Component : VexRiscv
-// Git hash  : d26367c5fef9a3c0b9267252e516580d792fcca0
+// Git hash  : 6bce178f5927e8960c36a559e33b1ba090ce88d4
 
 
 `define Input2Kind_defaultEncoding_type [0:0]
@@ -60,15 +60,6 @@ module VexRiscv (
   input      [31:0]   debug_bus_cmd_payload_data,
   output reg [31:0]   debug_bus_rsp_data,
   output              debug_resetOut,
-  output              CfuPlugin_bus_cmd_valid,
-  input               CfuPlugin_bus_cmd_ready,
-  output     [9:0]    CfuPlugin_bus_cmd_payload_function_id,
-  output     [31:0]   CfuPlugin_bus_cmd_payload_inputs_0,
-  output     [31:0]   CfuPlugin_bus_cmd_payload_inputs_1,
-  input               CfuPlugin_bus_rsp_valid,
-  output              CfuPlugin_bus_rsp_ready,
-  input               CfuPlugin_bus_rsp_payload_response_ok,
-  input      [31:0]   CfuPlugin_bus_rsp_payload_outputs_0,
   output reg          iBusWishbone_CYC,
   output reg          iBusWishbone_STB,
   input               iBusWishbone_ACK,
@@ -91,8 +82,8 @@ module VexRiscv (
   input               dBusWishbone_ERR,
   output     [2:0]    dBusWishbone_CTI,
   output     [1:0]    dBusWishbone_BTE,
-  input               clk,
   input               reset,
+  input               clk,
   input               debugReset
 );
   wire                _zz_196;
@@ -158,6 +149,10 @@ module VexRiscv (
   wire       [3:0]    dataCache_1_io_mem_cmd_payload_mask;
   wire       [2:0]    dataCache_1_io_mem_cmd_payload_length;
   wire                dataCache_1_io_mem_cmd_payload_last;
+  wire                cfuBb_1_io_bus_cmd_ready;
+  wire                cfuBb_1_io_bus_rsp_valid;
+  wire                cfuBb_1_io_bus_rsp_payload_response_ok;
+  wire       [31:0]   cfuBb_1_io_bus_rsp_payload_outputs_0;
   wire                _zz_227;
   wire                _zz_228;
   wire                _zz_229;
@@ -821,6 +816,15 @@ module VexRiscv (
   reg                 IBusCachedPlugin_injectionPort_valid;
   reg                 IBusCachedPlugin_injectionPort_ready;
   wire       [31:0]   IBusCachedPlugin_injectionPort_payload;
+  wire                CfuPlugin_bus_cmd_valid;
+  wire                CfuPlugin_bus_cmd_ready;
+  wire       [9:0]    CfuPlugin_bus_cmd_payload_function_id;
+  wire       [31:0]   CfuPlugin_bus_cmd_payload_inputs_0;
+  wire       [31:0]   CfuPlugin_bus_cmd_payload_inputs_1;
+  wire                CfuPlugin_bus_rsp_valid;
+  wire                CfuPlugin_bus_rsp_ready;
+  wire                CfuPlugin_bus_rsp_payload_response_ok;
+  wire       [31:0]   CfuPlugin_bus_rsp_payload_outputs_0;
   reg                 CfuPlugin_joinException_valid;
   wire       [3:0]    CfuPlugin_joinException_payload_code;
   wire       [31:0]   CfuPlugin_joinException_payload_badAddr;
@@ -1834,6 +1838,19 @@ module VexRiscv (
     .io_mem_rsp_payload_error                  (dBus_rsp_payload_error                             ), //i
     .clk                                       (clk                                                ), //i
     .reset                                     (reset                                              )  //i
+  );
+  CfuBb cfuBb_1 (
+    .io_clk                            (clk                                         ), //i
+    .io_reset                          (reset                                       ), //i
+    .io_bus_cmd_valid                  (CfuPlugin_bus_cmd_valid                     ), //i
+    .io_bus_cmd_ready                  (cfuBb_1_io_bus_cmd_ready                    ), //o
+    .io_bus_cmd_payload_function_id    (CfuPlugin_bus_cmd_payload_function_id[9:0]  ), //i
+    .io_bus_cmd_payload_inputs_0       (CfuPlugin_bus_cmd_payload_inputs_0[31:0]    ), //i
+    .io_bus_cmd_payload_inputs_1       (CfuPlugin_bus_cmd_payload_inputs_1[31:0]    ), //i
+    .io_bus_rsp_valid                  (cfuBb_1_io_bus_rsp_valid                    ), //o
+    .io_bus_rsp_ready                  (CfuPlugin_bus_rsp_ready                     ), //i
+    .io_bus_rsp_payload_response_ok    (cfuBb_1_io_bus_rsp_payload_response_ok      ), //o
+    .io_bus_rsp_payload_outputs_0      (cfuBb_1_io_bus_rsp_payload_outputs_0[31:0]  )  //o
   );
   always @(*) begin
     case(_zz_371)
@@ -4975,6 +4992,10 @@ module VexRiscv (
   assign dBus_rsp_valid = _zz_195;
   assign dBus_rsp_payload_data = dBusWishbone_DAT_MISO_regNext;
   assign dBus_rsp_payload_error = 1'b0;
+  assign CfuPlugin_bus_cmd_ready = cfuBb_1_io_bus_cmd_ready;
+  assign CfuPlugin_bus_rsp_valid = cfuBb_1_io_bus_rsp_valid;
+  assign CfuPlugin_bus_rsp_payload_response_ok = cfuBb_1_io_bus_rsp_payload_response_ok;
+  assign CfuPlugin_bus_rsp_payload_outputs_0 = cfuBb_1_io_bus_rsp_payload_outputs_0;
   always @ (posedge clk) begin
     if(reset) begin
       IBusCachedPlugin_fetchPc_pcReg <= externalResetVector;
