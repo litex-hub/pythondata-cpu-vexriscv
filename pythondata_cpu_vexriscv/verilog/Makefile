@@ -35,30 +35,18 @@ VexRiscv_FullDebug.v: $(SRC)
 # CFU versions must have module name changed because they will be wrapped
 VexRiscv_FullCfu.v: $(SRC)
 	sbt compile "runMain vexriscv.GenCoreDefault --dCacheSize 8192 --iCacheSize 8192 --csrPluginConfig all --cfu true --perfCSRs 8 --outputFile VexRiscv_FullCfu"
-	sed -e 's/module VexRiscv/module VexRiscv_inner/' $@ > tmp.v
-	/bin/mv tmp.v $@
-	./genWrapper.py $@ > wrap$@
 
 # CFU versions must have module name changed because they will be wrapped
 VexRiscv_FullCfuDebug.v: $(SRC)
 	sbt compile "runMain vexriscv.GenCoreDefault --dCacheSize 8192 --iCacheSize 8192 --csrPluginConfig all -d --cfu true --perfCSRs 8 --outputFile VexRiscv_FullCfuDebug"
-	sed -e 's/module VexRiscv/module VexRiscv_inner/' $@ > tmp.v
-	/bin/mv tmp.v $@
-	./genWrapper.py $@ > wrap$@
 
 # CFU versions must have module name changed because they will be wrapped
 VexRiscv_SlimCfu.v: $(SRC)
 	sbt compile "runMain vexriscv.GenCoreDefault --dCacheSize 0 --iCacheSize 1024 --csrPluginConfig all --cfu true --perfCSRs 8 --outputFile VexRiscv_SlimCfu"
-	sed -e 's/module VexRiscv/module VexRiscv_inner/' $@ > tmp.v
-	/bin/mv tmp.v $@
-	./genWrapper.py $@ > wrap$@
 
 # CFU versions must have module name changed because they will be wrapped
 VexRiscv_SlimCfuDebug.v: $(SRC)
 	sbt compile "runMain vexriscv.GenCoreDefault --dCacheSize 0 --iCacheSize 1024 --csrPluginConfig all -d --cfu true --perfCSRs 8 --outputFile VexRiscv_SlimCfuDebug"
-	sed -e 's/module VexRiscv/module VexRiscv_inner/' $@ > tmp.v
-	/bin/mv tmp.v $@
-	./genWrapper.py $@ > wrap$@
 
 VexRiscv_Linux.v: $(SRC)
 	sbt compile "runMain vexriscv.GenCoreDefault --csrPluginConfig linux-minimal --outputFile VexRiscv_Linux"
