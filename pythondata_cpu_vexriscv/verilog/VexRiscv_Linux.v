@@ -1,6 +1,6 @@
 // Generator : SpinalHDL v1.4.3    git head : adf552d8f500e7419fff395b7049228e4bc5de26
 // Component : VexRiscv
-// Git hash  : 9f870869a08c2f08812676be9bb2baffad2dbfe2
+// Git hash  : e78ff1c6772b33f1f3adf05557c1928a170ed641
 
 
 `define EnvCtrlEnum_defaultEncoding_type [1:0]
