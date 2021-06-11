@@ -23,6 +23,7 @@ object SpinalConfig extends spinal.core.SpinalConfig(
 
 case class ArgConfig(
   debug : Boolean = false,
+  safe : Boolean = true,
   iCacheSize : Int = 4096,
   dCacheSize : Int = 4096,
   mulDiv : Boolean = true,
@@ -65,6 +66,7 @@ object GenCoreDefault{
       opt[Int]("dCacheSize")     action { (v, c) => c.copy(dCacheSize = v) } text("Set data cache size, 0 mean no cache")
       opt[Boolean]("mulDiv")    action { (v, c) => c.copy(mulDiv = v)   } text("set RV32IM")
       opt[Boolean]("cfu")       action { (v, c) => c.copy(cfu = v)   } text("If true, add SIMD ADD custom function unit")
+      opt[Boolean]("safe")      action { (v, c) => c.copy(safe = v)   } text("Default true; if false, disable many checks.")
       opt[Int]("perfCSRs")       action { (v, c) => c.copy(perfCSRs = v)   } text("Number of pausable performance counter CSRs to add (default 0)")
       opt[Boolean]("atomics")    action { (v, c) => c.copy(mulDiv = v)   } text("set RV32I[A]")
       opt[Boolean]("compressedGen")    action { (v, c) => c.copy(compressedGen = v)   } text("set RV32I[C]")
@@ -112,8 +114,8 @@ object GenCoreDefault{
               addressWidth = 32,
               cpuDataWidth = 32,
               memDataWidth = 32,
-              catchIllegalAccess = true,
-              catchAccessFault = true,
+              catchIllegalAccess = argConfig.safe,
+              catchAccessFault = argConfig.safe,
               asyncTagMemory = false,
               twoCycleRam = false,
               twoCycleCache = !argConfig.compressedGen
@@ -123,8 +125,8 @@ object GenCoreDefault{
 
         if(argConfig.dCacheSize <= 0){
           new DBusSimplePlugin(
-            catchAddressMisaligned = true,
-            catchAccessFault = true,
+            catchAddressMisaligned = argConfig.safe,
+            catchAccessFault = argConfig.safe,
             withLrSc = linux || argConfig.atomics,
             memoryTranslatorPortConfig = if(linux) MmuPortConfig(portTlbSize = 4)
           )
@@ -158,7 +160,7 @@ object GenCoreDefault{
           ioRange      = _.msb
         ),
         new DecoderSimplePlugin(
-          catchIllegalInstruction = true
+          catchIllegalInstruction = argConfig.safe
         ),
         new RegFilePlugin(
           regFileReadyKind = plugin.SYNC,
@@ -186,7 +188,7 @@ object GenCoreDefault{
         new BranchPlugin(
           // If using CFU, use earlyBranch to avoid incorrect CFU execution
           earlyBranch = argConfig.cfu,
-          catchAddressMisaligned = true
+          catchAddressMisaligned = argConfig.safe
         ),
         new CsrPlugin(
           argConfig.csrPluginConfig match {
