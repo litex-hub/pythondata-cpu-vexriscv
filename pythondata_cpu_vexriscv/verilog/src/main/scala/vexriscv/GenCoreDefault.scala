@@ -32,12 +32,14 @@ case class ArgConfig(
   atomics: Boolean = false,
   compressedGen: Boolean = false,
   singleCycleMulDiv : Boolean = true,
+  hardwareDiv: Boolean = true,
   singleCycleShift : Boolean = true,
   relaxedPcCalculation : Boolean = false,
   bypass : Boolean = true,
   externalInterruptArray : Boolean = true,
   resetVector : BigInt = null,
   machineTrapVector : BigInt = null,
+  memoryAndWritebackStage : Boolean = true, 
   prediction : BranchPrediction = STATIC,
   outputFile : String = "VexRiscv",
   csrPluginConfig : String = "small",
@@ -71,6 +73,7 @@ object GenCoreDefault{
       opt[Boolean]("atomics")    action { (v, c) => c.copy(mulDiv = v)   } text("set RV32I[A]")
       opt[Boolean]("compressedGen")    action { (v, c) => c.copy(compressedGen = v)   } text("set RV32I[C]")
       opt[Boolean]("singleCycleMulDiv")    action { (v, c) => c.copy(singleCycleMulDiv = v)   } text("If true, MUL/DIV are single-cycle")
+      opt[Boolean]("hardwareDiv") action { (v, c) => c.copy(hardwareDiv = v) } text ("Default true; if false, turns off any _iterative_ hardware division.")
       opt[Boolean]("singleCycleShift")    action { (v, c) => c.copy(singleCycleShift = v)   } text("If true, SHIFTS are single-cycle")
       opt[Boolean]("relaxedPcCalculation")    action { (v, c) => c.copy(relaxedPcCalculation = v)   } text("If true, one extra stage will be added to the fetch to improve timings")
       opt[Boolean]("bypass")    action { (v, c) => c.copy(bypass = v)   } text("set pipeline interlock/bypass")
@@ -79,6 +82,7 @@ object GenCoreDefault{
       opt[Boolean]("dBusCachedEarlyWaysHits")    action { (v, c) => c.copy(dBusCachedEarlyWaysHits = v)   } text("If set, the d$ way hit calculation is done in the memory stage, else in the writeback stage.")
       opt[String]("resetVector")    action { (v, c) => c.copy(resetVector = BigInt(if(v.startsWith("0x")) v.tail.tail else v, 16))   } text("Specify the CPU reset vector in hexadecimal. If not specified, an 32 bits input is added to the CPU to set durring instanciation")
       opt[String]("machineTrapVector")    action { (v, c) => c.copy(machineTrapVector = BigInt(if(v.startsWith("0x")) v.tail.tail else v, 16))   } text("Specify the CPU machine trap vector in hexadecimal. If not specified, it take a unknown value when the design boot")
+      opt[Boolean]("memoryAndWritebackStage") action { (v, c) => c.copy(memoryAndWritebackStage = v) } text("Default true; if false, removes the memory and writeback stages.")
       opt[String]("prediction")    action { (v, c) => c.copy(prediction = predictionMap(v))   } text("switch between regular CSR and array like one")
       opt[String]("outputFile")    action { (v, c) => c.copy(outputFile = v) } text("output file name")
       opt[String]("csrPluginConfig")  action { (v, c) => c.copy(csrPluginConfig = v) } text("switch between 'small', 'mcycle', 'all', 'linux' and 'linux-minimal' version of control and status registers configuration")
@@ -160,7 +164,7 @@ object GenCoreDefault{
           ioRange      = _.msb
         ),
         new DecoderSimplePlugin(
-          catchIllegalInstruction = argConfig.safe
+          catchIllegalInstruction = argConfig.safe || !argConfig.hardwareDiv
         ),
         new RegFilePlugin(
           regFileReadyKind = plugin.SYNC,
@@ -169,7 +173,7 @@ object GenCoreDefault{
         new IntAluPlugin,
         new SrcPlugin(
           separatedAddSub = false,
-          executeInsertion = true
+          executeInsertion = argConfig.memoryAndWritebackStage
         ),
         if(argConfig.singleCycleShift) {
           new FullBarrelShifterPlugin
@@ -187,7 +191,7 @@ object GenCoreDefault{
         ),
         new BranchPlugin(
           // If using CFU, use earlyBranch to avoid incorrect CFU execution
-          earlyBranch = argConfig.cfu,
+          earlyBranch = argConfig.cfu || !argConfig.memoryAndWritebackStage,
           catchAddressMisaligned = argConfig.safe
         ),
         new CsrPlugin(
@@ -255,7 +259,7 @@ object GenCoreDefault{
           plugins ++= List(
             new MulDivIterativePlugin(
               genMul = true,
-              genDiv = true,
+              genDiv = argConfig.hardwareDiv,
               mulUnrollFactor = 1,
               divUnrollFactor = 1
             )
@@ -278,7 +282,11 @@ object GenCoreDefault{
       }
 
       // CPU configuration
-      val cpuConfig = VexRiscvConfig(plugins.toList)
+      val cpuConfig = VexRiscvConfig(
+        withMemoryStage = argConfig.memoryAndWritebackStage,
+        withWriteBackStage = argConfig.memoryAndWritebackStage,
+        plugins.toList
+      )
 
       // CPU instantiation
       val cpu = new VexRiscv(cpuConfig)
