@@ -90,6 +90,10 @@ object GenCoreDefault{
     val argConfig = parser.parse(args, ArgConfig()).get
     val linux = argConfig.csrPluginConfig.startsWith("linux")
 
+    if (!argConfig.memoryAndWritebackStage && argConfig.cfu) {
+      throw new RuntimeException("CFU plugin requires a memory and writeback stage.")
+    }
+
     SpinalConfig.copy(netlistFileName = argConfig.outputFile + ".v").generateVerilog {
       // Generate CPU plugin list
       val plugins = ArrayBuffer[Plugin[VexRiscv]]()
