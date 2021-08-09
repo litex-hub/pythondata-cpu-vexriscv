@@ -27,10 +27,10 @@ VexRiscv_MinDebug.v: $(SRC)
 	sbt compile "runMain vexriscv.GenCoreDefault -d --iCacheSize 0 --dCacheSize 0 --mulDiv false --singleCycleShift false --singleCycleMulDiv false --bypass false --prediction none --outputFile VexRiscv_MinDebug"
 
 VexRiscv_Fomu.v: $(SRC)
-	sbt compile "runMain vexriscv.GenCoreDefault --safe false --iCacheSize 512 --dCacheSize 0 --csrPluginConfig mcycle --mulDiv true --singleCycleShift false --singleCycleMulDiv false --bypass false --prediction none --hardwareDiv false --outputFile VexRiscv_Fomu"
+	sbt compile "runMain vexriscv.GenCoreDefault --safe false --iCacheSize 2048 --dCacheSize 0 --csrPluginConfig mcycle --mulDiv true --singleCycleShift true --singleCycleMulDiv true --bypass false --prediction none --hardwareDiv false --outputFile VexRiscv_Fomu"
 
 VexRiscv_FomuCfu.v: $(SRC)
-	sbt compile "runMain vexriscv.GenCoreDefault --safe false --cfu true --iCacheSize 512 --dCacheSize 0 --csrPluginConfig mcycle --mulDiv true --singleCycleShift false --singleCycleMulDiv false --bypass false --prediction none  --hardwareDiv false --outputFile VexRiscv_FomuCfu"
+	sbt compile "runMain vexriscv.GenCoreDefault --safe false --cfu true --iCacheSize 2048 --dCacheSize 0 --csrPluginConfig mcycle --mulDiv true --singleCycleShift true --singleCycleMulDiv true --bypass false --prediction none --hardwareDiv false --outputFile VexRiscv_FomuCfu"
 
 VexRiscv_Full.v: $(SRC)
 	sbt compile "runMain vexriscv.GenCoreDefault --csrPluginConfig all --outputFile VexRiscv_Full"

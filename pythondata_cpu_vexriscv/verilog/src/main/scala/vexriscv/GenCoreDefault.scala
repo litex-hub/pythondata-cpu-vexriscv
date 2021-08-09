@@ -255,10 +255,10 @@ object GenCoreDefault{
 
       if(argConfig.mulDiv) {
         if(argConfig.singleCycleMulDiv) {
-          plugins ++= List(
-            new MulPlugin,
-            new DivPlugin
-          )
+          plugins ++= List(new MulPlugin)
+          if (argConfig.hardwareDiv) {
+            plugins ++= List(new DivPlugin)
+          }
         }else {
           plugins ++= List(
             new MulDivIterativePlugin(
