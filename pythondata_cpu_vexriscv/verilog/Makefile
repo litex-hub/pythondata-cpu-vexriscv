@@ -1,6 +1,6 @@
 SRC := ${shell find . -type f -name \*.scala}
 
-all: VexRiscv.v VexRiscv_Debug.v VexRiscv_Lite.v VexRiscv_LiteDebug.v VexRiscv_IMAC.v VexRiscv_IMACDebug.v VexRiscv_Min.v VexRiscv_MinDebug.v VexRiscv_Full.v VexRiscv_FullDebug.v VexRiscv_Linux.v VexRiscv_LinuxDebug.v VexRiscv_LinuxNoDspFmax.v VexRiscv_FullCfu.v VexRiscv_FullCfuDebug.v VexRiscv_SlimCfu.v VexRiscv_SlimCfuDebug.v VexRiscv_Fomu.v VexRiscv_FomuCfu.v
+all: VexRiscv.v VexRiscv_Debug.v VexRiscv_Lite.v VexRiscv_LiteDebug.v VexRiscv_IMAC.v VexRiscv_IMACDebug.v VexRiscv_Min.v VexRiscv_MinDebug.v VexRiscv_Full.v VexRiscv_FullDebug.v VexRiscv_Linux.v VexRiscv_LinuxDebug.v VexRiscv_LinuxNoDspFmax.v VexRiscv_FullCfu.v VexRiscv_FullCfuDebug.v VexRiscv_SlimCfu.v VexRiscv_SlimCfuDebug.v VexRiscv_Fomu.v VexRiscv_FomuCfu.v VexRiscv_PerfCfu.v VexRiscv_PerfCfuDebug.v
 
 VexRiscv.v: $(SRC)
 	sbt compile "runMain vexriscv.GenCoreDefault"
@@ -38,21 +38,23 @@ VexRiscv_Full.v: $(SRC)
 VexRiscv_FullDebug.v: $(SRC)
 	sbt compile "runMain vexriscv.GenCoreDefault --csrPluginConfig all -d --outputFile VexRiscv_FullDebug"
 
-# CFU versions must have module name changed because they will be wrapped
 VexRiscv_FullCfu.v: $(SRC)
 	sbt compile "runMain vexriscv.GenCoreDefault --dCacheSize 8192 --iCacheSize 8192 --csrPluginConfig all --cfu true --perfCSRs 8 --outputFile VexRiscv_FullCfu"
 
-# CFU versions must have module name changed because they will be wrapped
 VexRiscv_FullCfuDebug.v: $(SRC)
 	sbt compile "runMain vexriscv.GenCoreDefault --dCacheSize 8192 --iCacheSize 8192 --csrPluginConfig all -d --cfu true --perfCSRs 8 --outputFile VexRiscv_FullCfuDebug"
 
-# CFU versions must have module name changed because they will be wrapped
-VexRiscv_SlimCfu.v: $(SRC)
-	sbt compile "runMain vexriscv.GenCoreDefault --dCacheSize 0 --iCacheSize 1024 --csrPluginConfig all --cfu true --perfCSRs 8 --outputFile VexRiscv_SlimCfu"
+VexRiscv_PerfCfu.v: $(SRC)
+	sbt compile "runMain vexriscv.GenCoreDefault --dCacheSize 8192 --iCacheSize 8192 --csrPluginConfig all --cfu true --perfCSRs 8 --outputFile VexRiscv_PerfCfu"
 
-# CFU versions must have module name changed because they will be wrapped
+VexRiscv_PerfCfuDebug.v: $(SRC)
+	sbt compile "runMain vexriscv.GenCoreDefault --dCacheSize 8192 --iCacheSize 8192 --csrPluginConfig all -d --cfu true --perfCSRs 8 --outputFile VexRiscv_PerfCfuDebug"
+
+VexRiscv_SlimCfu.v: $(SRC)
+	sbt compile "runMain vexriscv.GenCoreDefault --dCacheSize 4096 --iCacheSize 2048 --csrPluginConfig all --cfu true --outputFile VexRiscv_SlimCfu"
+
 VexRiscv_SlimCfuDebug.v: $(SRC)
-	sbt compile "runMain vexriscv.GenCoreDefault --dCacheSize 0 --iCacheSize 1024 --csrPluginConfig all -d --cfu true --perfCSRs 8 --outputFile VexRiscv_SlimCfuDebug"
+	sbt compile "runMain vexriscv.GenCoreDefault --dCacheSize 4096 --iCacheSize 2048 --csrPluginConfig all -d --cfu true --outputFile VexRiscv_SlimCfuDebug"
 
 VexRiscv_Linux.v: $(SRC)
 	sbt compile "runMain vexriscv.GenCoreDefault --csrPluginConfig linux-minimal --outputFile VexRiscv_Linux"
