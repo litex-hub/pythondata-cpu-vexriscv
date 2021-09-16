@@ -1,6 +1,6 @@
 SRC := ${shell find . -type f -name \*.scala}
 
-all: VexRiscv.v VexRiscv_Debug.v VexRiscv_Lite.v VexRiscv_LiteDebug.v VexRiscv_IMAC.v VexRiscv_IMACDebug.v VexRiscv_Min.v VexRiscv_MinDebug.v VexRiscv_Full.v VexRiscv_FullDebug.v VexRiscv_Linux.v VexRiscv_LinuxDebug.v VexRiscv_LinuxNoDspFmax.v VexRiscv_FullCfu.v VexRiscv_FullCfuDebug.v VexRiscv_SlimCfu.v VexRiscv_SlimCfuDebug.v VexRiscv_Fomu.v VexRiscv_FomuCfu.v VexRiscv_PerfCfu.v VexRiscv_PerfCfuDebug.v
+all: VexRiscv.v VexRiscv_Debug.v VexRiscv_Lite.v VexRiscv_LiteDebug.v VexRiscv_IMAC.v VexRiscv_IMACDebug.v VexRiscv_Min.v VexRiscv_MinDebug.v VexRiscv_Full.v VexRiscv_FullDebug.v VexRiscv_Linux.v VexRiscv_LinuxDebug.v VexRiscv_LinuxNoDspFmax.v VexRiscv_FullCfu.v VexRiscv_FullCfuDebug.v VexRiscv_SlimCfu.v VexRiscv_SlimCfuDebug.v VexRiscv_Fomu.v VexRiscv_FomuCfu.v VexRiscv_PerfCfu.v VexRiscv_PerfCfuDebug.v VexRiscv_SlimPerfCfu.v VexRiscv_SlimPerfCfuDebug.v
 
 VexRiscv.v: $(SRC)
 	sbt compile "runMain vexriscv.GenCoreDefault"
@@ -55,6 +55,12 @@ VexRiscv_SlimCfu.v: $(SRC)
 
 VexRiscv_SlimCfuDebug.v: $(SRC)
 	sbt compile "runMain vexriscv.GenCoreDefault --dCacheSize 4096 --iCacheSize 2048 --csrPluginConfig all -d --cfu true --outputFile VexRiscv_SlimCfuDebug"
+
+VexRiscv_SlimPerfCfu.v: $(SRC)
+	sbt compile "runMain vexriscv.GenCoreDefault --dCacheSize 4096 --iCacheSize 2048 --csrPluginConfig all --cfu true --perfCSRs 8 --outputFile VexRiscv_SlimPerfCfu"
+
+VexRiscv_SlimPerfCfuDebug.v: $(SRC)
+	sbt compile "runMain vexriscv.GenCoreDefault --dCacheSize 4096 --iCacheSize 2048 --csrPluginConfig all -d --cfu true --perfCSRs 8 --outputFile VexRiscv_SlimPerfCfuDebug"
 
 VexRiscv_Linux.v: $(SRC)
 	sbt compile "runMain vexriscv.GenCoreDefault --csrPluginConfig linux-minimal --outputFile VexRiscv_Linux"
