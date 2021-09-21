@@ -26,6 +26,8 @@ case class ArgConfig(
   safe : Boolean = true,
   iCacheSize : Int = 4096,
   dCacheSize : Int = 4096,
+  pmpRegions : Int = 0,
+  pmpGranularity : Int = 256,
   mulDiv : Boolean = true,
   cfu : Boolean = false,
   perfCSRs : Int = 0,
@@ -66,11 +68,13 @@ object GenCoreDefault{
       opt[Int]("iCacheSize")     action { (v, c) => c.copy(iCacheSize = v) } text("Set instruction cache size, 0 mean no cache")
       // ex : -dCacheSize=XXX
       opt[Int]("dCacheSize")     action { (v, c) => c.copy(dCacheSize = v) } text("Set data cache size, 0 mean no cache")
+      opt[Int]("pmpRegions")    action { (v, c) => c.copy(pmpRegions = v)   } text("Number of PMP regions, 0 disables PMP")
+      opt[Int]("pmpGranularity")    action { (v, c) => c.copy(pmpGranularity = v)   } text("Granularity of PMP regions (in bytes)")
       opt[Boolean]("mulDiv")    action { (v, c) => c.copy(mulDiv = v)   } text("set RV32IM")
       opt[Boolean]("cfu")       action { (v, c) => c.copy(cfu = v)   } text("If true, add SIMD ADD custom function unit")
       opt[Boolean]("safe")      action { (v, c) => c.copy(safe = v)   } text("Default true; if false, disable many checks.")
       opt[Int]("perfCSRs")       action { (v, c) => c.copy(perfCSRs = v)   } text("Number of pausable performance counter CSRs to add (default 0)")
-      opt[Boolean]("atomics")    action { (v, c) => c.copy(mulDiv = v)   } text("set RV32I[A]")
+      opt[Boolean]("atomics")    action { (v, c) => c.copy(atomics = v)   } text("set RV32I[A]")
       opt[Boolean]("compressedGen")    action { (v, c) => c.copy(compressedGen = v)   } text("set RV32I[C]")
       opt[Boolean]("singleCycleMulDiv")    action { (v, c) => c.copy(singleCycleMulDiv = v)   } text("If true, MUL/DIV are single-cycle")
       opt[Boolean]("hardwareDiv") action { (v, c) => c.copy(hardwareDiv = v) } text ("Default true; if false, turns off any _iterative_ hardware division.")
@@ -106,7 +110,7 @@ object GenCoreDefault{
             cmdForkOnSecondStage = false,
             cmdForkPersistence = false, //Not required as the wishbone bridge ensure it
             compressedGen = argConfig.compressedGen,
-            memoryTranslatorPortConfig = if(linux) MmuPortConfig(portTlbSize = 4)
+            memoryTranslatorPortConfig = if(linux) MmuPortConfig(portTlbSize = 4) else null
           )
         }else {
           new IBusCachedPlugin(
@@ -114,11 +118,11 @@ object GenCoreDefault{
             relaxedPcCalculation = argConfig.relaxedPcCalculation,
             prediction = argConfig.prediction,
             compressedGen = argConfig.compressedGen,
-            memoryTranslatorPortConfig = if(linux) MmuPortConfig(portTlbSize = 4),
+            memoryTranslatorPortConfig = if(linux) MmuPortConfig(portTlbSize = 4) else null,
             config = InstructionCacheConfig(
               cacheSize = argConfig.iCacheSize,
               bytePerLine = 32,
-              wayCount = (argConfig.iCacheSize + 4095) / 4096,
+              wayCount = if(linux) ((argConfig.iCacheSize + 4095) / 4096) else 1,
               addressWidth = 32,
               cpuDataWidth = 32,
               memDataWidth = 32,
@@ -136,7 +140,7 @@ object GenCoreDefault{
             catchAddressMisaligned = argConfig.safe,
             catchAccessFault = argConfig.safe,
             withLrSc = linux || argConfig.atomics,
-            memoryTranslatorPortConfig = if(linux) MmuPortConfig(portTlbSize = 4)
+            memoryTranslatorPortConfig = if(linux) MmuPortConfig(portTlbSize = 4) else null
           )
         }else {
           new DBusCachedPlugin(
@@ -147,7 +151,7 @@ object GenCoreDefault{
             config = new DataCacheConfig(
               cacheSize = argConfig.dCacheSize,
               bytePerLine = 32,
-              wayCount = (argConfig.dCacheSize + 4095) / 4096,
+              wayCount = if(linux) ((argConfig.dCacheSize + 4095) / 4096) else 1,
               addressWidth = 32,
               cpuDataWidth = 32,
               memDataWidth = 32,
@@ -158,15 +162,18 @@ object GenCoreDefault{
               withAmo = linux,
               earlyWaysHits = argConfig.dBusCachedEarlyWaysHits
             ),
-            memoryTranslatorPortConfig = if(linux) MmuPortConfig(portTlbSize = 4),
+            memoryTranslatorPortConfig = if(linux) MmuPortConfig(portTlbSize = 4) else null,
             csrInfo = true
           )
         },
-        if(linux) new MmuPlugin(
+        if (linux) new MmuPlugin(
           ioRange = (x => x(31 downto 28) === 0xB || x(31 downto 28) === 0xE || x(31 downto 28) === 0xF)
-        )  else new StaticMemoryTranslatorPlugin(
+        ) else if (argConfig.pmpRegions > 0) new PmpPlugin(
+          regions = argConfig.pmpRegions, granularity = argConfig.pmpGranularity, ioRange = _.msb
+        ) else new StaticMemoryTranslatorPlugin(
           ioRange      = _.msb
         ),
+
         new DecoderSimplePlugin(
           catchIllegalInstruction = argConfig.safe || !argConfig.hardwareDiv
         ),
@@ -205,16 +212,45 @@ object GenCoreDefault{
             case "all" => CsrPluginConfig.all(mtvecInit = argConfig.machineTrapVector)
             case "linux" => CsrPluginConfig.linuxFull(mtVecInit = argConfig.machineTrapVector).copy(ebreakGen = false)
             case "linux-minimal" => CsrPluginConfig.linuxMinimal(mtVecInit = argConfig.machineTrapVector).copy(ebreakGen = false)
+            case "secure" => CsrPluginConfig.secure(argConfig.machineTrapVector)
           }
         ),
         new YamlPlugin(argConfig.outputFile.concat(".yaml"))
       )
 
-      if(argConfig.perfCSRs > 0) {
-        plugins ++= List(
-          new PerfCsrPlugin(argConfig.perfCSRs)
-        )
+      if(argConfig.mulDiv) {
+        if(argConfig.singleCycleMulDiv) {
+          plugins ++= List(new MulPlugin)
+          if (argConfig.hardwareDiv) {
+            plugins ++= List(new DivPlugin)
+          }
+        }else {
+          plugins ++= List(
+            new MulDivIterativePlugin(
+              genMul = true,
+              genDiv = argConfig.hardwareDiv,
+              mulUnrollFactor = 1,
+              divUnrollFactor = 1
+            )
+          )
+        }
       }
+
+      if(argConfig.externalInterruptArray) plugins ++= List(
+        new ExternalInterruptArrayPlugin(
+          machineMaskCsrId = 0xBC0,
+          machinePendingsCsrId = 0xFC0,
+          supervisorMaskCsrId = 0x9C0,
+          supervisorPendingsCsrId = 0xDC0
+        )
+      )
+
+      // Add in the Debug plugin, if requested
+      if(argConfig.debug) {
+        plugins += new DebugPlugin(ClockDomain.current.clone(reset = Bool().setName("debugReset")))
+      }
+
+      // CFU plugin/port
       if(argConfig.cfu) {
         plugins ++= List(
           new CfuPlugin(
@@ -253,36 +289,11 @@ object GenCoreDefault{
         )
       }
 
-      if(argConfig.mulDiv) {
-        if(argConfig.singleCycleMulDiv) {
-          plugins ++= List(new MulPlugin)
-          if (argConfig.hardwareDiv) {
-            plugins ++= List(new DivPlugin)
-          }
-        }else {
-          plugins ++= List(
-            new MulDivIterativePlugin(
-              genMul = true,
-              genDiv = argConfig.hardwareDiv,
-              mulUnrollFactor = 1,
-              divUnrollFactor = 1
-            )
-          )
-        }
-      }
-
-      if(argConfig.externalInterruptArray) plugins ++= List(
-        new ExternalInterruptArrayPlugin(
-          machineMaskCsrId = 0xBC0,
-          machinePendingsCsrId = 0xFC0,
-          supervisorMaskCsrId = 0x9C0,
-          supervisorPendingsCsrId = 0xDC0
+      // Performance counter CSRs
+      if(argConfig.perfCSRs > 0) {
+        plugins ++= List(
+          new PerfCsrPlugin(argConfig.perfCSRs)
         )
-      )
-
-      // Add in the Debug plugin, if requested
-      if(argConfig.debug) {
-        plugins += new DebugPlugin(ClockDomain.current.clone(reset = Bool().setName("debugReset")))
       }
 
       // CPU configuration
