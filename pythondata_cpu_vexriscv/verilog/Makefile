@@ -50,6 +50,9 @@ VexRiscv_PerfCfu.v: $(SRC)
 VexRiscv_PerfCfuDebug.v: $(SRC)
 	sbt compile "runMain vexriscv.GenCoreDefault --dCacheSize 8192 --iCacheSize 8192 --csrPluginConfig all -d --cfu true --perfCSRs 8 --outputFile VexRiscv_PerfCfuDebug"
 
+VexRiscv_Slim.v: $(SRC)
+	sbt compile "runMain vexriscv.GenCoreDefault --dCacheSize 4096 --iCacheSize 2048 --csrPluginConfig all --outputFile VexRiscv_Slim"
+
 VexRiscv_SlimCfu.v: $(SRC)
 	sbt compile "runMain vexriscv.GenCoreDefault --dCacheSize 4096 --iCacheSize 2048 --csrPluginConfig all --cfu true --outputFile VexRiscv_SlimCfu"
 
