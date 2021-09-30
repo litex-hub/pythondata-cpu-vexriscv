@@ -1,6 +1,6 @@
 // Generator : SpinalHDL v1.6.0    git head : 73c8d8e2b86b45646e9d0b2e729291f2b65e6be3
 // Component : VexRiscv
-// Git hash  : 593e180abf5ba39e7fa33d4f371646453f84496a
+// Git hash  : 7454d1ac406f4e81ba8a81e164d3d67822e1b45b
 
 
 `define Input2Kind_binary_sequential_type [0:0]
@@ -421,7 +421,7 @@ module VexRiscv (
   wire       [31:0]   _zz_memory_DivPlugin_rs2_1;
   wire       [0:0]    _zz_memory_DivPlugin_rs2_2;
   wire       [9:0]    _zz_execute_CfuPlugin_functionsIds_0;
-  wire       [31:0]   _zz_CsrPlugin_csrMapping_readDataInit_41;
+  wire       [31:0]   _zz_CsrPlugin_csrMapping_readDataInit_25;
   wire       [26:0]   _zz_iBusWishbone_ADR_1;
   wire       [51:0]   memory_MUL_LOW;
   wire                writeBack_CfuPlugin_CFU_IN_FLIGHT;
@@ -1159,30 +1159,6 @@ module VexRiscv (
   reg                 CfuPlugin_bus_rsp_rValid;
   reg        [31:0]   CfuPlugin_bus_rsp_rData_outputs_0;
   wire                when_CfuPlugin_l208;
-  reg        [31:0]   _zz_CsrPlugin_csrMapping_readDataInit_2;
-  reg        [31:0]   _zz_when_GenCoreDefault_l367;
-  wire                when_GenCoreDefault_l367;
-  reg        [31:0]   _zz_CsrPlugin_csrMapping_readDataInit_3;
-  reg        [31:0]   _zz_when_GenCoreDefault_l367_1;
-  wire                when_GenCoreDefault_l367_1;
-  reg        [31:0]   _zz_CsrPlugin_csrMapping_readDataInit_4;
-  reg        [31:0]   _zz_when_GenCoreDefault_l367_2;
-  wire                when_GenCoreDefault_l367_2;
-  reg        [31:0]   _zz_CsrPlugin_csrMapping_readDataInit_5;
-  reg        [31:0]   _zz_when_GenCoreDefault_l367_3;
-  wire                when_GenCoreDefault_l367_3;
-  reg        [31:0]   _zz_CsrPlugin_csrMapping_readDataInit_6;
-  reg        [31:0]   _zz_when_GenCoreDefault_l367_4;
-  wire                when_GenCoreDefault_l367_4;
-  reg        [31:0]   _zz_CsrPlugin_csrMapping_readDataInit_7;
-  reg        [31:0]   _zz_when_GenCoreDefault_l367_5;
-  wire                when_GenCoreDefault_l367_5;
-  reg        [31:0]   _zz_CsrPlugin_csrMapping_readDataInit_8;
-  reg        [31:0]   _zz_when_GenCoreDefault_l367_6;
-  wire                when_GenCoreDefault_l367_6;
-  reg        [31:0]   _zz_CsrPlugin_csrMapping_readDataInit_9;
-  reg        [31:0]   _zz_when_GenCoreDefault_l367_7;
-  wire                when_GenCoreDefault_l367_7;
   wire                when_Pipeline_l124;
   reg        [31:0]   decode_to_execute_PC;
   wire                when_Pipeline_l124_1;
@@ -1365,38 +1341,14 @@ module VexRiscv (
   reg                 execute_CsrPlugin_csr_3008;
   wire                when_CsrPlugin_l1264_23;
   reg                 execute_CsrPlugin_csr_4032;
-  wire                when_CsrPlugin_l1264_24;
-  reg                 execute_CsrPlugin_csr_2820;
-  wire                when_CsrPlugin_l1264_25;
-  reg                 execute_CsrPlugin_csr_2821;
-  wire                when_CsrPlugin_l1264_26;
-  reg                 execute_CsrPlugin_csr_2822;
-  wire                when_CsrPlugin_l1264_27;
-  reg                 execute_CsrPlugin_csr_2823;
-  wire                when_CsrPlugin_l1264_28;
-  reg                 execute_CsrPlugin_csr_2824;
-  wire                when_CsrPlugin_l1264_29;
-  reg                 execute_CsrPlugin_csr_2825;
-  wire                when_CsrPlugin_l1264_30;
-  reg                 execute_CsrPlugin_csr_2826;
-  wire                when_CsrPlugin_l1264_31;
-  reg                 execute_CsrPlugin_csr_2827;
-  wire                when_CsrPlugin_l1264_32;
-  reg                 execute_CsrPlugin_csr_2828;
-  wire                when_CsrPlugin_l1264_33;
-  reg                 execute_CsrPlugin_csr_2829;
-  wire                when_CsrPlugin_l1264_34;
-  reg                 execute_CsrPlugin_csr_2830;
-  wire                when_CsrPlugin_l1264_35;
-  reg                 execute_CsrPlugin_csr_2831;
-  wire                when_CsrPlugin_l1264_36;
-  reg                 execute_CsrPlugin_csr_2832;
-  wire                when_CsrPlugin_l1264_37;
-  reg                 execute_CsrPlugin_csr_2833;
-  wire                when_CsrPlugin_l1264_38;
-  reg                 execute_CsrPlugin_csr_2834;
-  wire                when_CsrPlugin_l1264_39;
-  reg                 execute_CsrPlugin_csr_2835;
+  reg        [31:0]   _zz_CsrPlugin_csrMapping_readDataInit_2;
+  reg        [31:0]   _zz_CsrPlugin_csrMapping_readDataInit_3;
+  reg        [31:0]   _zz_CsrPlugin_csrMapping_readDataInit_4;
+  reg        [31:0]   _zz_CsrPlugin_csrMapping_readDataInit_5;
+  reg        [31:0]   _zz_CsrPlugin_csrMapping_readDataInit_6;
+  reg        [31:0]   _zz_CsrPlugin_csrMapping_readDataInit_7;
+  reg        [31:0]   _zz_CsrPlugin_csrMapping_readDataInit_8;
+  reg        [31:0]   _zz_CsrPlugin_csrMapping_readDataInit_9;
   reg        [31:0]   _zz_CsrPlugin_csrMapping_readDataInit_10;
   reg        [31:0]   _zz_CsrPlugin_csrMapping_readDataInit_11;
   reg        [31:0]   _zz_CsrPlugin_csrMapping_readDataInit_12;
@@ -1412,22 +1364,6 @@ module VexRiscv (
   reg        [31:0]   _zz_CsrPlugin_csrMapping_readDataInit_22;
   reg        [31:0]   _zz_CsrPlugin_csrMapping_readDataInit_23;
   reg        [31:0]   _zz_CsrPlugin_csrMapping_readDataInit_24;
-  reg        [31:0]   _zz_CsrPlugin_csrMapping_readDataInit_25;
-  reg        [31:0]   _zz_CsrPlugin_csrMapping_readDataInit_26;
-  reg        [31:0]   _zz_CsrPlugin_csrMapping_readDataInit_27;
-  reg        [31:0]   _zz_CsrPlugin_csrMapping_readDataInit_28;
-  reg        [31:0]   _zz_CsrPlugin_csrMapping_readDataInit_29;
-  reg        [31:0]   _zz_CsrPlugin_csrMapping_readDataInit_30;
-  reg        [31:0]   _zz_CsrPlugin_csrMapping_readDataInit_31;
-  reg        [31:0]   _zz_CsrPlugin_csrMapping_readDataInit_32;
-  reg        [31:0]   _zz_CsrPlugin_csrMapping_readDataInit_33;
-  reg        [31:0]   _zz_CsrPlugin_csrMapping_readDataInit_34;
-  reg        [31:0]   _zz_CsrPlugin_csrMapping_readDataInit_35;
-  reg        [31:0]   _zz_CsrPlugin_csrMapping_readDataInit_36;
-  reg        [31:0]   _zz_CsrPlugin_csrMapping_readDataInit_37;
-  reg        [31:0]   _zz_CsrPlugin_csrMapping_readDataInit_38;
-  reg        [31:0]   _zz_CsrPlugin_csrMapping_readDataInit_39;
-  reg        [31:0]   _zz_CsrPlugin_csrMapping_readDataInit_40;
   wire                when_CsrPlugin_l1297;
   wire                when_CsrPlugin_l1302;
   reg        [2:0]    _zz_iBusWishbone_ADR;
@@ -1801,7 +1737,7 @@ module VexRiscv (
   assign _zz_execute_BranchPlugin_branch_src2_6 = execute_INSTRUCTION[31];
   assign _zz_execute_BranchPlugin_branch_src2_7 = execute_INSTRUCTION[31];
   assign _zz_execute_BranchPlugin_branch_src2_8 = execute_INSTRUCTION[7];
-  assign _zz_CsrPlugin_csrMapping_readDataInit_41 = 32'h0;
+  assign _zz_CsrPlugin_csrMapping_readDataInit_25 = 32'h0;
   always @(posedge clk) begin
     if(_zz_decode_RegFilePlugin_rs1Data) begin
       _zz_RegFilePlugin_regFile_port0 <= RegFilePlugin_regFile[decode_RegFilePlugin_regFileReadAddress1];
@@ -4543,70 +4479,6 @@ module VexRiscv (
         execute_CsrPlugin_illegalAccess = 1'b0;
       end
     end
-    if(execute_CsrPlugin_csr_2820) begin
-      execute_CsrPlugin_illegalAccess = 1'b0;
-    end
-    if(execute_CsrPlugin_csr_2821) begin
-      if(execute_CSR_WRITE_OPCODE) begin
-        execute_CsrPlugin_illegalAccess = 1'b0;
-      end
-    end
-    if(execute_CsrPlugin_csr_2822) begin
-      execute_CsrPlugin_illegalAccess = 1'b0;
-    end
-    if(execute_CsrPlugin_csr_2823) begin
-      if(execute_CSR_WRITE_OPCODE) begin
-        execute_CsrPlugin_illegalAccess = 1'b0;
-      end
-    end
-    if(execute_CsrPlugin_csr_2824) begin
-      execute_CsrPlugin_illegalAccess = 1'b0;
-    end
-    if(execute_CsrPlugin_csr_2825) begin
-      if(execute_CSR_WRITE_OPCODE) begin
-        execute_CsrPlugin_illegalAccess = 1'b0;
-      end
-    end
-    if(execute_CsrPlugin_csr_2826) begin
-      execute_CsrPlugin_illegalAccess = 1'b0;
-    end
-    if(execute_CsrPlugin_csr_2827) begin
-      if(execute_CSR_WRITE_OPCODE) begin
-        execute_CsrPlugin_illegalAccess = 1'b0;
-      end
-    end
-    if(execute_CsrPlugin_csr_2828) begin
-      execute_CsrPlugin_illegalAccess = 1'b0;
-    end
-    if(execute_CsrPlugin_csr_2829) begin
-      if(execute_CSR_WRITE_OPCODE) begin
-        execute_CsrPlugin_illegalAccess = 1'b0;
-      end
-    end
-    if(execute_CsrPlugin_csr_2830) begin
-      execute_CsrPlugin_illegalAccess = 1'b0;
-    end
-    if(execute_CsrPlugin_csr_2831) begin
-      if(execute_CSR_WRITE_OPCODE) begin
-        execute_CsrPlugin_illegalAccess = 1'b0;
-      end
-    end
-    if(execute_CsrPlugin_csr_2832) begin
-      execute_CsrPlugin_illegalAccess = 1'b0;
-    end
-    if(execute_CsrPlugin_csr_2833) begin
-      if(execute_CSR_WRITE_OPCODE) begin
-        execute_CsrPlugin_illegalAccess = 1'b0;
-      end
-    end
-    if(execute_CsrPlugin_csr_2834) begin
-      execute_CsrPlugin_illegalAccess = 1'b0;
-    end
-    if(execute_CsrPlugin_csr_2835) begin
-      if(execute_CSR_WRITE_OPCODE) begin
-        execute_CsrPlugin_illegalAccess = 1'b0;
-      end
-    end
     if(CsrPlugin_csrMapping_allowCsrSignal) begin
       execute_CsrPlugin_illegalAccess = 1'b0;
     end
@@ -4844,14 +4716,6 @@ module VexRiscv (
   end
 
   assign when_CfuPlugin_l208 = (! CfuPlugin_bus_rsp_rsp_valid);
-  assign when_GenCoreDefault_l367 = _zz_when_GenCoreDefault_l367[0];
-  assign when_GenCoreDefault_l367_1 = _zz_when_GenCoreDefault_l367_1[0];
-  assign when_GenCoreDefault_l367_2 = _zz_when_GenCoreDefault_l367_2[0];
-  assign when_GenCoreDefault_l367_3 = _zz_when_GenCoreDefault_l367_3[0];
-  assign when_GenCoreDefault_l367_4 = _zz_when_GenCoreDefault_l367_4[0];
-  assign when_GenCoreDefault_l367_5 = _zz_when_GenCoreDefault_l367_5[0];
-  assign when_GenCoreDefault_l367_6 = _zz_when_GenCoreDefault_l367_6[0];
-  assign when_GenCoreDefault_l367_7 = _zz_when_GenCoreDefault_l367_7[0];
   assign when_Pipeline_l124 = (! execute_arbitration_isStuck);
   assign when_Pipeline_l124_1 = (! memory_arbitration_isStuck);
   assign when_Pipeline_l124_2 = ((! writeBack_arbitration_isStuck) && (! CsrPlugin_exceptionPortCtrl_exceptionValids_writeBack));
@@ -4996,250 +4860,178 @@ module VexRiscv (
   assign when_CsrPlugin_l1264_21 = (! execute_arbitration_isStuck);
   assign when_CsrPlugin_l1264_22 = (! execute_arbitration_isStuck);
   assign when_CsrPlugin_l1264_23 = (! execute_arbitration_isStuck);
-  assign when_CsrPlugin_l1264_24 = (! execute_arbitration_isStuck);
-  assign when_CsrPlugin_l1264_25 = (! execute_arbitration_isStuck);
-  assign when_CsrPlugin_l1264_26 = (! execute_arbitration_isStuck);
-  assign when_CsrPlugin_l1264_27 = (! execute_arbitration_isStuck);
-  assign when_CsrPlugin_l1264_28 = (! execute_arbitration_isStuck);
-  assign when_CsrPlugin_l1264_29 = (! execute_arbitration_isStuck);
-  assign when_CsrPlugin_l1264_30 = (! execute_arbitration_isStuck);
-  assign when_CsrPlugin_l1264_31 = (! execute_arbitration_isStuck);
-  assign when_CsrPlugin_l1264_32 = (! execute_arbitration_isStuck);
-  assign when_CsrPlugin_l1264_33 = (! execute_arbitration_isStuck);
-  assign when_CsrPlugin_l1264_34 = (! execute_arbitration_isStuck);
-  assign when_CsrPlugin_l1264_35 = (! execute_arbitration_isStuck);
-  assign when_CsrPlugin_l1264_36 = (! execute_arbitration_isStuck);
-  assign when_CsrPlugin_l1264_37 = (! execute_arbitration_isStuck);
-  assign when_CsrPlugin_l1264_38 = (! execute_arbitration_isStuck);
-  assign when_CsrPlugin_l1264_39 = (! execute_arbitration_isStuck);
+  always @(*) begin
+    _zz_CsrPlugin_csrMapping_readDataInit_2 = 32'h0;
+    if(execute_CsrPlugin_csr_3264) begin
+      _zz_CsrPlugin_csrMapping_readDataInit_2[13 : 0] = 14'h2000;
+      _zz_CsrPlugin_csrMapping_readDataInit_2[25 : 20] = 6'h20;
+    end
+  end
+
+  always @(*) begin
+    _zz_CsrPlugin_csrMapping_readDataInit_3 = 32'h0;
+    if(execute_CsrPlugin_csr_3857) begin
+      _zz_CsrPlugin_csrMapping_readDataInit_3[3 : 0] = 4'b1011;
+    end
+  end
+
+  always @(*) begin
+    _zz_CsrPlugin_csrMapping_readDataInit_4 = 32'h0;
+    if(execute_CsrPlugin_csr_3858) begin
+      _zz_CsrPlugin_csrMapping_readDataInit_4[4 : 0] = 5'h16;
+    end
+  end
+
+  always @(*) begin
+    _zz_CsrPlugin_csrMapping_readDataInit_5 = 32'h0;
+    if(execute_CsrPlugin_csr_3859) begin
+      _zz_CsrPlugin_csrMapping_readDataInit_5[5 : 0] = 6'h21;
+    end
+  end
+
+  always @(*) begin
+    _zz_CsrPlugin_csrMapping_readDataInit_6 = 32'h0;
+    if(execute_CsrPlugin_csr_769) begin
+      _zz_CsrPlugin_csrMapping_readDataInit_6[31 : 30] = CsrPlugin_misa_base;
+      _zz_CsrPlugin_csrMapping_readDataInit_6[25 : 0] = CsrPlugin_misa_extensions;
+    end
+  end
+
+  always @(*) begin
+    _zz_CsrPlugin_csrMapping_readDataInit_7 = 32'h0;
+    if(execute_CsrPlugin_csr_768) begin
+      _zz_CsrPlugin_csrMapping_readDataInit_7[12 : 11] = CsrPlugin_mstatus_MPP;
+      _zz_CsrPlugin_csrMapping_readDataInit_7[7 : 7] = CsrPlugin_mstatus_MPIE;
+      _zz_CsrPlugin_csrMapping_readDataInit_7[3 : 3] = CsrPlugin_mstatus_MIE;
+    end
+  end
+
+  always @(*) begin
+    _zz_CsrPlugin_csrMapping_readDataInit_8 = 32'h0;
+    if(execute_CsrPlugin_csr_836) begin
+      _zz_CsrPlugin_csrMapping_readDataInit_8[11 : 11] = CsrPlugin_mip_MEIP;
+      _zz_CsrPlugin_csrMapping_readDataInit_8[7 : 7] = CsrPlugin_mip_MTIP;
+      _zz_CsrPlugin_csrMapping_readDataInit_8[3 : 3] = CsrPlugin_mip_MSIP;
+    end
+  end
+
+  always @(*) begin
+    _zz_CsrPlugin_csrMapping_readDataInit_9 = 32'h0;
+    if(execute_CsrPlugin_csr_772) begin
+      _zz_CsrPlugin_csrMapping_readDataInit_9[11 : 11] = CsrPlugin_mie_MEIE;
+      _zz_CsrPlugin_csrMapping_readDataInit_9[7 : 7] = CsrPlugin_mie_MTIE;
+      _zz_CsrPlugin_csrMapping_readDataInit_9[3 : 3] = CsrPlugin_mie_MSIE;
+    end
+  end
+
   always @(*) begin
     _zz_CsrPlugin_csrMapping_readDataInit_10 = 32'h0;
-    if(execute_CsrPlugin_csr_3264) begin
-      _zz_CsrPlugin_csrMapping_readDataInit_10[13 : 0] = 14'h2000;
-      _zz_CsrPlugin_csrMapping_readDataInit_10[25 : 20] = 6'h20;
+    if(execute_CsrPlugin_csr_773) begin
+      _zz_CsrPlugin_csrMapping_readDataInit_10[31 : 2] = CsrPlugin_mtvec_base;
+      _zz_CsrPlugin_csrMapping_readDataInit_10[1 : 0] = CsrPlugin_mtvec_mode;
     end
   end
 
   always @(*) begin
     _zz_CsrPlugin_csrMapping_readDataInit_11 = 32'h0;
-    if(execute_CsrPlugin_csr_3857) begin
-      _zz_CsrPlugin_csrMapping_readDataInit_11[3 : 0] = 4'b1011;
+    if(execute_CsrPlugin_csr_833) begin
+      _zz_CsrPlugin_csrMapping_readDataInit_11[31 : 0] = CsrPlugin_mepc;
     end
   end
 
   always @(*) begin
     _zz_CsrPlugin_csrMapping_readDataInit_12 = 32'h0;
-    if(execute_CsrPlugin_csr_3858) begin
-      _zz_CsrPlugin_csrMapping_readDataInit_12[4 : 0] = 5'h16;
+    if(execute_CsrPlugin_csr_832) begin
+      _zz_CsrPlugin_csrMapping_readDataInit_12[31 : 0] = CsrPlugin_mscratch;
     end
   end
 
   always @(*) begin
     _zz_CsrPlugin_csrMapping_readDataInit_13 = 32'h0;
-    if(execute_CsrPlugin_csr_3859) begin
-      _zz_CsrPlugin_csrMapping_readDataInit_13[5 : 0] = 6'h21;
+    if(execute_CsrPlugin_csr_834) begin
+      _zz_CsrPlugin_csrMapping_readDataInit_13[31 : 31] = CsrPlugin_mcause_interrupt;
+      _zz_CsrPlugin_csrMapping_readDataInit_13[3 : 0] = CsrPlugin_mcause_exceptionCode;
     end
   end
 
   always @(*) begin
     _zz_CsrPlugin_csrMapping_readDataInit_14 = 32'h0;
-    if(execute_CsrPlugin_csr_769) begin
-      _zz_CsrPlugin_csrMapping_readDataInit_14[31 : 30] = CsrPlugin_misa_base;
-      _zz_CsrPlugin_csrMapping_readDataInit_14[25 : 0] = CsrPlugin_misa_extensions;
+    if(execute_CsrPlugin_csr_835) begin
+      _zz_CsrPlugin_csrMapping_readDataInit_14[31 : 0] = CsrPlugin_mtval;
     end
   end
 
   always @(*) begin
     _zz_CsrPlugin_csrMapping_readDataInit_15 = 32'h0;
-    if(execute_CsrPlugin_csr_768) begin
-      _zz_CsrPlugin_csrMapping_readDataInit_15[12 : 11] = CsrPlugin_mstatus_MPP;
-      _zz_CsrPlugin_csrMapping_readDataInit_15[7 : 7] = CsrPlugin_mstatus_MPIE;
-      _zz_CsrPlugin_csrMapping_readDataInit_15[3 : 3] = CsrPlugin_mstatus_MIE;
+    if(execute_CsrPlugin_csr_2816) begin
+      _zz_CsrPlugin_csrMapping_readDataInit_15[31 : 0] = CsrPlugin_mcycle[31 : 0];
     end
   end
 
   always @(*) begin
     _zz_CsrPlugin_csrMapping_readDataInit_16 = 32'h0;
-    if(execute_CsrPlugin_csr_836) begin
-      _zz_CsrPlugin_csrMapping_readDataInit_16[11 : 11] = CsrPlugin_mip_MEIP;
-      _zz_CsrPlugin_csrMapping_readDataInit_16[7 : 7] = CsrPlugin_mip_MTIP;
-      _zz_CsrPlugin_csrMapping_readDataInit_16[3 : 3] = CsrPlugin_mip_MSIP;
+    if(execute_CsrPlugin_csr_2944) begin
+      _zz_CsrPlugin_csrMapping_readDataInit_16[31 : 0] = CsrPlugin_mcycle[63 : 32];
     end
   end
 
   always @(*) begin
     _zz_CsrPlugin_csrMapping_readDataInit_17 = 32'h0;
-    if(execute_CsrPlugin_csr_772) begin
-      _zz_CsrPlugin_csrMapping_readDataInit_17[11 : 11] = CsrPlugin_mie_MEIE;
-      _zz_CsrPlugin_csrMapping_readDataInit_17[7 : 7] = CsrPlugin_mie_MTIE;
-      _zz_CsrPlugin_csrMapping_readDataInit_17[3 : 3] = CsrPlugin_mie_MSIE;
+    if(execute_CsrPlugin_csr_2818) begin
+      _zz_CsrPlugin_csrMapping_readDataInit_17[31 : 0] = CsrPlugin_minstret[31 : 0];
     end
   end
 
   always @(*) begin
     _zz_CsrPlugin_csrMapping_readDataInit_18 = 32'h0;
-    if(execute_CsrPlugin_csr_773) begin
-      _zz_CsrPlugin_csrMapping_readDataInit_18[31 : 2] = CsrPlugin_mtvec_base;
-      _zz_CsrPlugin_csrMapping_readDataInit_18[1 : 0] = CsrPlugin_mtvec_mode;
+    if(execute_CsrPlugin_csr_2946) begin
+      _zz_CsrPlugin_csrMapping_readDataInit_18[31 : 0] = CsrPlugin_minstret[63 : 32];
     end
   end
 
   always @(*) begin
     _zz_CsrPlugin_csrMapping_readDataInit_19 = 32'h0;
-    if(execute_CsrPlugin_csr_833) begin
-      _zz_CsrPlugin_csrMapping_readDataInit_19[31 : 0] = CsrPlugin_mepc;
+    if(execute_CsrPlugin_csr_3072) begin
+      _zz_CsrPlugin_csrMapping_readDataInit_19[31 : 0] = CsrPlugin_mcycle[31 : 0];
     end
   end
 
   always @(*) begin
     _zz_CsrPlugin_csrMapping_readDataInit_20 = 32'h0;
-    if(execute_CsrPlugin_csr_832) begin
-      _zz_CsrPlugin_csrMapping_readDataInit_20[31 : 0] = CsrPlugin_mscratch;
+    if(execute_CsrPlugin_csr_3200) begin
+      _zz_CsrPlugin_csrMapping_readDataInit_20[31 : 0] = CsrPlugin_mcycle[63 : 32];
     end
   end
 
   always @(*) begin
     _zz_CsrPlugin_csrMapping_readDataInit_21 = 32'h0;
-    if(execute_CsrPlugin_csr_834) begin
-      _zz_CsrPlugin_csrMapping_readDataInit_21[31 : 31] = CsrPlugin_mcause_interrupt;
-      _zz_CsrPlugin_csrMapping_readDataInit_21[3 : 0] = CsrPlugin_mcause_exceptionCode;
+    if(execute_CsrPlugin_csr_3074) begin
+      _zz_CsrPlugin_csrMapping_readDataInit_21[31 : 0] = CsrPlugin_minstret[31 : 0];
     end
   end
 
   always @(*) begin
     _zz_CsrPlugin_csrMapping_readDataInit_22 = 32'h0;
-    if(execute_CsrPlugin_csr_835) begin
-      _zz_CsrPlugin_csrMapping_readDataInit_22[31 : 0] = CsrPlugin_mtval;
+    if(execute_CsrPlugin_csr_3202) begin
+      _zz_CsrPlugin_csrMapping_readDataInit_22[31 : 0] = CsrPlugin_minstret[63 : 32];
     end
   end
 
   always @(*) begin
     _zz_CsrPlugin_csrMapping_readDataInit_23 = 32'h0;
-    if(execute_CsrPlugin_csr_2816) begin
-      _zz_CsrPlugin_csrMapping_readDataInit_23[31 : 0] = CsrPlugin_mcycle[31 : 0];
+    if(execute_CsrPlugin_csr_3008) begin
+      _zz_CsrPlugin_csrMapping_readDataInit_23[31 : 0] = _zz_CsrPlugin_csrMapping_readDataInit;
     end
   end
 
   always @(*) begin
     _zz_CsrPlugin_csrMapping_readDataInit_24 = 32'h0;
-    if(execute_CsrPlugin_csr_2944) begin
-      _zz_CsrPlugin_csrMapping_readDataInit_24[31 : 0] = CsrPlugin_mcycle[63 : 32];
-    end
-  end
-
-  always @(*) begin
-    _zz_CsrPlugin_csrMapping_readDataInit_25 = 32'h0;
-    if(execute_CsrPlugin_csr_2818) begin
-      _zz_CsrPlugin_csrMapping_readDataInit_25[31 : 0] = CsrPlugin_minstret[31 : 0];
-    end
-  end
-
-  always @(*) begin
-    _zz_CsrPlugin_csrMapping_readDataInit_26 = 32'h0;
-    if(execute_CsrPlugin_csr_2946) begin
-      _zz_CsrPlugin_csrMapping_readDataInit_26[31 : 0] = CsrPlugin_minstret[63 : 32];
-    end
-  end
-
-  always @(*) begin
-    _zz_CsrPlugin_csrMapping_readDataInit_27 = 32'h0;
-    if(execute_CsrPlugin_csr_3072) begin
-      _zz_CsrPlugin_csrMapping_readDataInit_27[31 : 0] = CsrPlugin_mcycle[31 : 0];
-    end
-  end
-
-  always @(*) begin
-    _zz_CsrPlugin_csrMapping_readDataInit_28 = 32'h0;
-    if(execute_CsrPlugin_csr_3200) begin
-      _zz_CsrPlugin_csrMapping_readDataInit_28[31 : 0] = CsrPlugin_mcycle[63 : 32];
-    end
-  end
-
-  always @(*) begin
-    _zz_CsrPlugin_csrMapping_readDataInit_29 = 32'h0;
-    if(execute_CsrPlugin_csr_3074) begin
-      _zz_CsrPlugin_csrMapping_readDataInit_29[31 : 0] = CsrPlugin_minstret[31 : 0];
-    end
-  end
-
-  always @(*) begin
-    _zz_CsrPlugin_csrMapping_readDataInit_30 = 32'h0;
-    if(execute_CsrPlugin_csr_3202) begin
-      _zz_CsrPlugin_csrMapping_readDataInit_30[31 : 0] = CsrPlugin_minstret[63 : 32];
-    end
-  end
-
-  always @(*) begin
-    _zz_CsrPlugin_csrMapping_readDataInit_31 = 32'h0;
-    if(execute_CsrPlugin_csr_3008) begin
-      _zz_CsrPlugin_csrMapping_readDataInit_31[31 : 0] = _zz_CsrPlugin_csrMapping_readDataInit;
-    end
-  end
-
-  always @(*) begin
-    _zz_CsrPlugin_csrMapping_readDataInit_32 = 32'h0;
     if(execute_CsrPlugin_csr_4032) begin
-      _zz_CsrPlugin_csrMapping_readDataInit_32[31 : 0] = _zz_CsrPlugin_csrMapping_readDataInit_1;
+      _zz_CsrPlugin_csrMapping_readDataInit_24[31 : 0] = _zz_CsrPlugin_csrMapping_readDataInit_1;
     end
   end
 
-  always @(*) begin
-    _zz_CsrPlugin_csrMapping_readDataInit_33 = 32'h0;
-    if(execute_CsrPlugin_csr_2820) begin
-      _zz_CsrPlugin_csrMapping_readDataInit_33[31 : 0] = _zz_CsrPlugin_csrMapping_readDataInit_2;
-    end
-  end
-
-  always @(*) begin
-    _zz_CsrPlugin_csrMapping_readDataInit_34 = 32'h0;
-    if(execute_CsrPlugin_csr_2822) begin
-      _zz_CsrPlugin_csrMapping_readDataInit_34[31 : 0] = _zz_CsrPlugin_csrMapping_readDataInit_3;
-    end
-  end
-
-  always @(*) begin
-    _zz_CsrPlugin_csrMapping_readDataInit_35 = 32'h0;
-    if(execute_CsrPlugin_csr_2824) begin
-      _zz_CsrPlugin_csrMapping_readDataInit_35[31 : 0] = _zz_CsrPlugin_csrMapping_readDataInit_4;
-    end
-  end
-
-  always @(*) begin
-    _zz_CsrPlugin_csrMapping_readDataInit_36 = 32'h0;
-    if(execute_CsrPlugin_csr_2826) begin
-      _zz_CsrPlugin_csrMapping_readDataInit_36[31 : 0] = _zz_CsrPlugin_csrMapping_readDataInit_5;
-    end
-  end
-
-  always @(*) begin
-    _zz_CsrPlugin_csrMapping_readDataInit_37 = 32'h0;
-    if(execute_CsrPlugin_csr_2828) begin
-      _zz_CsrPlugin_csrMapping_readDataInit_37[31 : 0] = _zz_CsrPlugin_csrMapping_readDataInit_6;
-    end
-  end
-
-  always @(*) begin
-    _zz_CsrPlugin_csrMapping_readDataInit_38 = 32'h0;
-    if(execute_CsrPlugin_csr_2830) begin
-      _zz_CsrPlugin_csrMapping_readDataInit_38[31 : 0] = _zz_CsrPlugin_csrMapping_readDataInit_7;
-    end
-  end
-
-  always @(*) begin
-    _zz_CsrPlugin_csrMapping_readDataInit_39 = 32'h0;
-    if(execute_CsrPlugin_csr_2832) begin
-      _zz_CsrPlugin_csrMapping_readDataInit_39[31 : 0] = _zz_CsrPlugin_csrMapping_readDataInit_8;
-    end
-  end
-
-  always @(*) begin
-    _zz_CsrPlugin_csrMapping_readDataInit_40 = 32'h0;
-    if(execute_CsrPlugin_csr_2834) begin
-      _zz_CsrPlugin_csrMapping_readDataInit_40[31 : 0] = _zz_CsrPlugin_csrMapping_readDataInit_9;
-    end
-  end
-
-  assign CsrPlugin_csrMapping_readDataInit = (((((_zz_CsrPlugin_csrMapping_readDataInit_10 | _zz_CsrPlugin_csrMapping_readDataInit_11) | (_zz_CsrPlugin_csrMapping_readDataInit_12 | _zz_CsrPlugin_csrMapping_readDataInit_13)) | ((_zz_CsrPlugin_csrMapping_readDataInit_41 | _zz_CsrPlugin_csrMapping_readDataInit_14) | (_zz_CsrPlugin_csrMapping_readDataInit_15 | _zz_CsrPlugin_csrMapping_readDataInit_16))) | (((_zz_CsrPlugin_csrMapping_readDataInit_17 | _zz_CsrPlugin_csrMapping_readDataInit_18) | (_zz_CsrPlugin_csrMapping_readDataInit_19 | _zz_CsrPlugin_csrMapping_readDataInit_20)) | ((_zz_CsrPlugin_csrMapping_readDataInit_21 | _zz_CsrPlugin_csrMapping_readDataInit_22) | (_zz_CsrPlugin_csrMapping_readDataInit_23 | _zz_CsrPlugin_csrMapping_readDataInit_24)))) | ((((_zz_CsrPlugin_csrMapping_readDataInit_25 | _zz_CsrPlugin_csrMapping_readDataInit_26) | (_zz_CsrPlugin_csrMapping_readDataInit_27 | _zz_CsrPlugin_csrMapping_readDataInit_28)) | ((_zz_CsrPlugin_csrMapping_readDataInit_29 | _zz_CsrPlugin_csrMapping_readDataInit_30) | (_zz_CsrPlugin_csrMapping_readDataInit_31 | _zz_CsrPlugin_csrMapping_readDataInit_32))) | (((_zz_CsrPlugin_csrMapping_readDataInit_33 | _zz_CsrPlugin_csrMapping_readDataInit_34) | (_zz_CsrPlugin_csrMapping_readDataInit_35 | _zz_CsrPlugin_csrMapping_readDataInit_36)) | ((_zz_CsrPlugin_csrMapping_readDataInit_37 | _zz_CsrPlugin_csrMapping_readDataInit_38) | (_zz_CsrPlugin_csrMapping_readDataInit_39 | _zz_CsrPlugin_csrMapping_readDataInit_40)))));
+  assign CsrPlugin_csrMapping_readDataInit = (((((_zz_CsrPlugin_csrMapping_readDataInit_2 | _zz_CsrPlugin_csrMapping_readDataInit_3) | (_zz_CsrPlugin_csrMapping_readDataInit_4 | _zz_CsrPlugin_csrMapping_readDataInit_5)) | ((_zz_CsrPlugin_csrMapping_readDataInit_25 | _zz_CsrPlugin_csrMapping_readDataInit_6) | (_zz_CsrPlugin_csrMapping_readDataInit_7 | _zz_CsrPlugin_csrMapping_readDataInit_8))) | (((_zz_CsrPlugin_csrMapping_readDataInit_9 | _zz_CsrPlugin_csrMapping_readDataInit_10) | (_zz_CsrPlugin_csrMapping_readDataInit_11 | _zz_CsrPlugin_csrMapping_readDataInit_12)) | ((_zz_CsrPlugin_csrMapping_readDataInit_13 | _zz_CsrPlugin_csrMapping_readDataInit_14) | (_zz_CsrPlugin_csrMapping_readDataInit_15 | _zz_CsrPlugin_csrMapping_readDataInit_16)))) | (((_zz_CsrPlugin_csrMapping_readDataInit_17 | _zz_CsrPlugin_csrMapping_readDataInit_18) | (_zz_CsrPlugin_csrMapping_readDataInit_19 | _zz_CsrPlugin_csrMapping_readDataInit_20)) | ((_zz_CsrPlugin_csrMapping_readDataInit_21 | _zz_CsrPlugin_csrMapping_readDataInit_22) | (_zz_CsrPlugin_csrMapping_readDataInit_23 | _zz_CsrPlugin_csrMapping_readDataInit_24))));
   assign when_CsrPlugin_l1297 = (CsrPlugin_privilege < execute_CsrPlugin_csrAddress[9 : 8]);
   assign when_CsrPlugin_l1302 = ((! execute_arbitration_isValid) || (! execute_IS_CSR));
   assign iBusWishbone_ADR = {_zz_iBusWishbone_ADR_1,_zz_iBusWishbone_ADR};
@@ -5687,30 +5479,6 @@ module VexRiscv (
     if(CfuPlugin_bus_rsp_ready) begin
       CfuPlugin_bus_rsp_rData_outputs_0 <= CfuPlugin_bus_rsp_payload_outputs_0;
     end
-    if(when_GenCoreDefault_l367) begin
-      _zz_CsrPlugin_csrMapping_readDataInit_2 <= (_zz_CsrPlugin_csrMapping_readDataInit_2 + 32'h00000001);
-    end
-    if(when_GenCoreDefault_l367_1) begin
-      _zz_CsrPlugin_csrMapping_readDataInit_3 <= (_zz_CsrPlugin_csrMapping_readDataInit_3 + 32'h00000001);
-    end
-    if(when_GenCoreDefault_l367_2) begin
-      _zz_CsrPlugin_csrMapping_readDataInit_4 <= (_zz_CsrPlugin_csrMapping_readDataInit_4 + 32'h00000001);
-    end
-    if(when_GenCoreDefault_l367_3) begin
-      _zz_CsrPlugin_csrMapping_readDataInit_5 <= (_zz_CsrPlugin_csrMapping_readDataInit_5 + 32'h00000001);
-    end
-    if(when_GenCoreDefault_l367_4) begin
-      _zz_CsrPlugin_csrMapping_readDataInit_6 <= (_zz_CsrPlugin_csrMapping_readDataInit_6 + 32'h00000001);
-    end
-    if(when_GenCoreDefault_l367_5) begin
-      _zz_CsrPlugin_csrMapping_readDataInit_7 <= (_zz_CsrPlugin_csrMapping_readDataInit_7 + 32'h00000001);
-    end
-    if(when_GenCoreDefault_l367_6) begin
-      _zz_CsrPlugin_csrMapping_readDataInit_8 <= (_zz_CsrPlugin_csrMapping_readDataInit_8 + 32'h00000001);
-    end
-    if(when_GenCoreDefault_l367_7) begin
-      _zz_CsrPlugin_csrMapping_readDataInit_9 <= (_zz_CsrPlugin_csrMapping_readDataInit_9 + 32'h00000001);
-    end
     if(when_Pipeline_l124) begin
       decode_to_execute_PC <= decode_PC;
     end
@@ -5972,54 +5740,6 @@ module VexRiscv (
     if(when_CsrPlugin_l1264_23) begin
       execute_CsrPlugin_csr_4032 <= (decode_INSTRUCTION[31 : 20] == 12'hfc0);
     end
-    if(when_CsrPlugin_l1264_24) begin
-      execute_CsrPlugin_csr_2820 <= (decode_INSTRUCTION[31 : 20] == 12'hb04);
-    end
-    if(when_CsrPlugin_l1264_25) begin
-      execute_CsrPlugin_csr_2821 <= (decode_INSTRUCTION[31 : 20] == 12'hb05);
-    end
-    if(when_CsrPlugin_l1264_26) begin
-      execute_CsrPlugin_csr_2822 <= (decode_INSTRUCTION[31 : 20] == 12'hb06);
-    end
-    if(when_CsrPlugin_l1264_27) begin
-      execute_CsrPlugin_csr_2823 <= (decode_INSTRUCTION[31 : 20] == 12'hb07);
-    end
-    if(when_CsrPlugin_l1264_28) begin
-      execute_CsrPlugin_csr_2824 <= (decode_INSTRUCTION[31 : 20] == 12'hb08);
-    end
-    if(when_CsrPlugin_l1264_29) begin
-      execute_CsrPlugin_csr_2825 <= (decode_INSTRUCTION[31 : 20] == 12'hb09);
-    end
-    if(when_CsrPlugin_l1264_30) begin
-      execute_CsrPlugin_csr_2826 <= (decode_INSTRUCTION[31 : 20] == 12'hb0a);
-    end
-    if(when_CsrPlugin_l1264_31) begin
-      execute_CsrPlugin_csr_2827 <= (decode_INSTRUCTION[31 : 20] == 12'hb0b);
-    end
-    if(when_CsrPlugin_l1264_32) begin
-      execute_CsrPlugin_csr_2828 <= (decode_INSTRUCTION[31 : 20] == 12'hb0c);
-    end
-    if(when_CsrPlugin_l1264_33) begin
-      execute_CsrPlugin_csr_2829 <= (decode_INSTRUCTION[31 : 20] == 12'hb0d);
-    end
-    if(when_CsrPlugin_l1264_34) begin
-      execute_CsrPlugin_csr_2830 <= (decode_INSTRUCTION[31 : 20] == 12'hb0e);
-    end
-    if(when_CsrPlugin_l1264_35) begin
-      execute_CsrPlugin_csr_2831 <= (decode_INSTRUCTION[31 : 20] == 12'hb0f);
-    end
-    if(when_CsrPlugin_l1264_36) begin
-      execute_CsrPlugin_csr_2832 <= (decode_INSTRUCTION[31 : 20] == 12'hb10);
-    end
-    if(when_CsrPlugin_l1264_37) begin
-      execute_CsrPlugin_csr_2833 <= (decode_INSTRUCTION[31 : 20] == 12'hb11);
-    end
-    if(when_CsrPlugin_l1264_38) begin
-      execute_CsrPlugin_csr_2834 <= (decode_INSTRUCTION[31 : 20] == 12'hb12);
-    end
-    if(when_CsrPlugin_l1264_39) begin
-      execute_CsrPlugin_csr_2835 <= (decode_INSTRUCTION[31 : 20] == 12'hb13);
-    end
     if(execute_CsrPlugin_csr_836) begin
       if(execute_CsrPlugin_writeEnable) begin
         CsrPlugin_mip_MSIP <= CsrPlugin_csrMapping_writeDataSignal[3];
@@ -6070,86 +5790,6 @@ module VexRiscv (
     if(execute_CsrPlugin_csr_2946) begin
       if(execute_CsrPlugin_writeEnable) begin
         CsrPlugin_minstret[63 : 32] <= CsrPlugin_csrMapping_writeDataSignal[31 : 0];
-      end
-    end
-    if(execute_CsrPlugin_csr_2820) begin
-      if(execute_CsrPlugin_writeEnable) begin
-        _zz_CsrPlugin_csrMapping_readDataInit_2 <= CsrPlugin_csrMapping_writeDataSignal[31 : 0];
-      end
-    end
-    if(execute_CsrPlugin_csr_2821) begin
-      if(execute_CsrPlugin_writeEnable) begin
-        _zz_when_GenCoreDefault_l367 <= CsrPlugin_csrMapping_writeDataSignal[31 : 0];
-      end
-    end
-    if(execute_CsrPlugin_csr_2822) begin
-      if(execute_CsrPlugin_writeEnable) begin
-        _zz_CsrPlugin_csrMapping_readDataInit_3 <= CsrPlugin_csrMapping_writeDataSignal[31 : 0];
-      end
-    end
-    if(execute_CsrPlugin_csr_2823) begin
-      if(execute_CsrPlugin_writeEnable) begin
-        _zz_when_GenCoreDefault_l367_1 <= CsrPlugin_csrMapping_writeDataSignal[31 : 0];
-      end
-    end
-    if(execute_CsrPlugin_csr_2824) begin
-      if(execute_CsrPlugin_writeEnable) begin
-        _zz_CsrPlugin_csrMapping_readDataInit_4 <= CsrPlugin_csrMapping_writeDataSignal[31 : 0];
-      end
-    end
-    if(execute_CsrPlugin_csr_2825) begin
-      if(execute_CsrPlugin_writeEnable) begin
-        _zz_when_GenCoreDefault_l367_2 <= CsrPlugin_csrMapping_writeDataSignal[31 : 0];
-      end
-    end
-    if(execute_CsrPlugin_csr_2826) begin
-      if(execute_CsrPlugin_writeEnable) begin
-        _zz_CsrPlugin_csrMapping_readDataInit_5 <= CsrPlugin_csrMapping_writeDataSignal[31 : 0];
-      end
-    end
-    if(execute_CsrPlugin_csr_2827) begin
-      if(execute_CsrPlugin_writeEnable) begin
-        _zz_when_GenCoreDefault_l367_3 <= CsrPlugin_csrMapping_writeDataSignal[31 : 0];
-      end
-    end
-    if(execute_CsrPlugin_csr_2828) begin
-      if(execute_CsrPlugin_writeEnable) begin
-        _zz_CsrPlugin_csrMapping_readDataInit_6 <= CsrPlugin_csrMapping_writeDataSignal[31 : 0];
-      end
-    end
-    if(execute_CsrPlugin_csr_2829) begin
-      if(execute_CsrPlugin_writeEnable) begin
-        _zz_when_GenCoreDefault_l367_4 <= CsrPlugin_csrMapping_writeDataSignal[31 : 0];
-      end
-    end
-    if(execute_CsrPlugin_csr_2830) begin
-      if(execute_CsrPlugin_writeEnable) begin
-        _zz_CsrPlugin_csrMapping_readDataInit_7 <= CsrPlugin_csrMapping_writeDataSignal[31 : 0];
-      end
-    end
-    if(execute_CsrPlugin_csr_2831) begin
-      if(execute_CsrPlugin_writeEnable) begin
-        _zz_when_GenCoreDefault_l367_5 <= CsrPlugin_csrMapping_writeDataSignal[31 : 0];
-      end
-    end
-    if(execute_CsrPlugin_csr_2832) begin
-      if(execute_CsrPlugin_writeEnable) begin
-        _zz_CsrPlugin_csrMapping_readDataInit_8 <= CsrPlugin_csrMapping_writeDataSignal[31 : 0];
-      end
-    end
-    if(execute_CsrPlugin_csr_2833) begin
-      if(execute_CsrPlugin_writeEnable) begin
-        _zz_when_GenCoreDefault_l367_6 <= CsrPlugin_csrMapping_writeDataSignal[31 : 0];
-      end
-    end
-    if(execute_CsrPlugin_csr_2834) begin
-      if(execute_CsrPlugin_writeEnable) begin
-        _zz_CsrPlugin_csrMapping_readDataInit_9 <= CsrPlugin_csrMapping_writeDataSignal[31 : 0];
-      end
-    end
-    if(execute_CsrPlugin_csr_2835) begin
-      if(execute_CsrPlugin_writeEnable) begin
-        _zz_when_GenCoreDefault_l367_7 <= CsrPlugin_csrMapping_writeDataSignal[31 : 0];
       end
     end
     iBusWishbone_DAT_MISO_regNext <= iBusWishbone_DAT_MISO;
