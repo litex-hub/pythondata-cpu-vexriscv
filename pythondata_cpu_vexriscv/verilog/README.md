@@ -17,6 +17,16 @@ src/main/scala/vexriscv GenCoreDefault.scala
 - Available in normal an -Debug, with the Debug bus exposed
 
 
+## Changes in `tcal-x`'s fork
+
+- Now submodule ext/VexRiscv uses tip of `dev` branch
+- Added ext/SpinalHDL submodule, also `dev` branch
+- Modified `build.sbt` to bring up to date with current `dev` VexRiscv
+- Modified `src/main/scala/vexriscv/GenCoreDefault.scala` to add a `--cfu` option, to add the CFU interface
+- Added `VexRiscv_FullCfu.v` and `VexRiscv_FullCfuDebug.v` (and yamls), and updated `Makefile` to build them
+- I did **not** rebuild the other .v/.yaml files
+
+
 ## Requirements
 
 - Java 8
