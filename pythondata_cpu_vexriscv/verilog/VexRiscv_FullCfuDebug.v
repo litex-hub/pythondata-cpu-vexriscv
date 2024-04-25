@@ -1,6 +1,6 @@
 // Generator : SpinalHDL v1.9.4    git head : 270018552577f3bb8e5339ee2583c9c22d324215
 // Component : VexRiscv
-// Git hash  : 63430af99f84cc1d11d58b556debe1cc3f238c67
+// Git hash  : 8542a5786b26857f3ef830ae9e72eec031df42d3
 
 `timescale 1ns/1ps
 
@@ -46,6 +46,7 @@ module VexRiscv (
   input  wire          dBusWishbone_ERR,
   output wire [2:0]    dBusWishbone_CTI,
   output wire [1:0]    dBusWishbone_BTE,
+  output wire          halted,
   input  wire          clk,
   input  wire          reset,
   input  wire          debugReset
@@ -5314,6 +5315,7 @@ module VexRiscv (
   assign dBus_rsp_valid = _zz_dBus_rsp_valid;
   assign dBus_rsp_payload_data = dBusWishbone_DAT_MISO_regNext;
   assign dBus_rsp_payload_error = 1'b0;
+  assign halted = DebugPlugin_haltIt;
   always @(posedge clk) begin
     if(reset) begin
       IBusCachedPlugin_fetchPc_pcReg <= externalResetVector;
