@@ -331,6 +331,9 @@ object GenCoreDefault{
             plugin.dBus.setAsDirectionLess()
             master(plugin.dBus.toWishbone()).setName("dBusWishbone")
           }
+          case plugin : DebugPlugin => {
+            out(CombInit(cpu.reflectBaseType("DebugPlugin_haltIt")).setName("halted"))
+          }
           case _ =>
         }
       }
