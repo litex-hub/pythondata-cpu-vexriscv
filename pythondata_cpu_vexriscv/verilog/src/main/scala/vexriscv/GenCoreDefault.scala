@@ -160,7 +160,7 @@ object GenCoreDefault{
           )
         },
         if (linux) new MmuPlugin(
-          ioRange = (x => x(31 downto 28) === 0xB || x(31 downto 28) === 0xE || x(31 downto 28) === 0xF)
+          ioRange = _.msb
         ) else if (argConfig.pmpRegions > 0) {
           val splitModes = argConfig.pmpAddressMatchingModes.toLowerCase().split(",");
 
