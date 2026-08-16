@@ -231,6 +231,11 @@ object GenCoreDefault{
         new YamlPlugin(argConfig.outputFile.concat(".yaml"))
       )
 
+      // RV32 OpenSBI >= 1.6 clears MSTATUSH_MDT unconditionally in its trap paths, so a core
+      // without mstatush traps inside the trap handler. readOnly = false because a read-only
+      // mstatush only tolerates that write by accident of opcode decoding.
+      if(linux) plugins += new MstatushPlugin(readOnly = false)
+
       if(argConfig.mulDiv) {
         if(argConfig.singleCycleMulDiv) {
           plugins ++= List(
